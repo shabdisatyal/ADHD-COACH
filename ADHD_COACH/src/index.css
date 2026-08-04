@@ -1,3 +1,10 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import url('https://fonts.googleapis.com/css2?family=Fascinate&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Petit+Formal+Script&display=swap');
+@import "tailwindcss";
+
+
+@theme {
+  --font-fascinate: "Fascinate", system-ui;
+  --font-lexend : "Lexend", sans-serif;
+  --font-petit: "Petit Formal Script", cursive;
+}

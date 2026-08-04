@@ -1,37 +1,47 @@
 import { useState, useCallback } from 'react';
 
-// Takes an array of image sources - doesn't care what they're named
-export function useFolderShuffle(images, startIndex = 0) {
+export function useFolderShuffle(text, startIndex = 0) {
   const [currentIndex, setCurrentIndex] = useState(startIndex);
 
   const shuffle = useCallback(() => {
-    if (images.length <= 1) return; // nothing to shuffle to
+    if (text.length <= 1) return; // nothing to shuffle to
 
     let nextIndex;
     do {
-      nextIndex = Math.floor(Math.random() * images.length);
+      nextIndex = Math.floor(Math.random() * text.length);
     } while (nextIndex === currentIndex); // avoid immediate repeat
 
     setCurrentIndex(nextIndex);
-  }, [images.length, currentIndex]);
+  }, [text.length, currentIndex]);
 
   return {
-    currentImage: images[currentIndex],
+    currentText: text[currentIndex],
     currentIndex,
     shuffle,
   };
 }
 
-
-
-export function Card({ images, label }) {
-  const { currentImage, currentIndex, shuffle } = useFolderShuffle(images);
+export function Card({ text, label }) {
+  const { currentText, currentIndex, shuffle } = useFolderShuffle(text);
 
   return (
-    <div className='ImageShufflerContainer border-4 border-black rounded-none' onClick={shuffle}>
-      <img src={currentImage} alt={label} />
-      <div className="dots">
-        {images.map((_, i) => (
+    <div className="TextShufflerContainer w-full mx-auto mt-12" onClick={shuffle}>
+      <div className="relative w-full overflow-hidden rounded-sm">
+        <img
+          src="https://i.pinimg.com/1200x/48/ac/d9/48acd9ee8d4190419df62f63a33c58d9.jpg"
+          alt={label}
+          className="w-full h-full object-cover"
+        />
+
+        <div className="absolute inset-0 flex items-center justify-center px-6">
+          <p className="text-[#5A7863] text-4xl font-fascinate text-center px-4 py-2 rounded-md">
+            {currentText}
+          </p>
+        </div>
+      </div>
+
+      <div className="dots flex justify-center gap-2 mt-2">
+        {text.map((_, i) => (
           <span
             key={i}
             className={i === currentIndex ? 'dot dot-active' : 'dot'}
@@ -42,22 +52,14 @@ export function Card({ images, label }) {
   );
 }
 
-
-export const imgfolder = [
-{
-label:'motivation', 
-images: [
-  'https://i.pinimg.com/736x/0f/18/a3/0f18a36ecf97385615a384af03e6a514.jpg',
-  'https://i.pinimg.com/736x/0b/a1/6a/0ba16a1be3ae8070a56bbeb7da769fa7.jpg',
-  'https://i.pinimg.com/736x/29/b8/01/29b8011472227557eeaec20a84b3f5ee.jpg',
-
-]
-
-}
-
-
-
-
-
-
-]
+export const textfolder = [
+  {
+    label: 'motivation',
+    text: [
+      'You Can Do This',
+      'I Believe In You',
+      'Yes Girl You Slay',
+      'We are the wild u',
+    ],
+  },
+];
