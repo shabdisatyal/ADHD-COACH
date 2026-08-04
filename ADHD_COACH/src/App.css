@@ -1,0 +1,15 @@
+body {
+  font-size: 16px;
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-family: "Lexend", sans-serif;
+  background-color: #EBF4DD
+}
+
+.lexend-headerfont {
+  font-family: "Lexend", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 2;
+  font-style: normal;
+}
+  
