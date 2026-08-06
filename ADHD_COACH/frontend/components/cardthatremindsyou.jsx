@@ -25,7 +25,7 @@ export function Card({ text, label }) {
   const { currentText, currentIndex, shuffle } = useFolderShuffle(text);
 
   return (
-    <div className="TextShufflerContainer w-full mx-auto mt-12" onClick={shuffle}>
+    <div className="TextShufflerContainer w-full mx-auto mt-0" onClick={shuffle}>
       <div className="relative w-full overflow-hidden rounded-sm">
         <img
           src="https://i.pinimg.com/1200x/48/ac/d9/48acd9ee8d4190419df62f63a33c58d9.jpg"
