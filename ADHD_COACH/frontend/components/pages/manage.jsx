@@ -1,5 +1,5 @@
  export function Manage () {
     return(
-        <h1> </h1>
+        <h1> EMPTY THING </h1>
     )
  }

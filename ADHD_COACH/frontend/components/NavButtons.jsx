@@ -14,7 +14,7 @@ export function NavButtons() {
   const [open, setOpen] = useState(false);
 
   return (
-  <div className="w-full flex flex-col items-end mr-4 pl-6">
+  <div className="w-full flex flex-col items-end  pl-6">
       <button
         onClick={() => setOpen(!open)}
         className="flex items-center gap-2 bg-[#4A5D45] text-white px-5 py-2 rounded-full hover:bg-[#5A7863] transition-colors cursor-pointer mt-6 mb-3"
