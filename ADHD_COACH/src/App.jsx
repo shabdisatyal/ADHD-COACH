@@ -1,4 +1,5 @@
 import './App.css';
+import{createClient} from '@supabase/supabase-js'
 import { BrowserRouter, Routes, Route, Link, useLocation } from 'react-router-dom';
 import { NavButtons } from '../frontend/components/NavButtons';
 import { Home } from '../frontend/components/pages/home';
@@ -23,6 +24,11 @@ function AnimatedRoutes() {
     </div>
   );
 }
+
+const supabase=createClient(
+  import.meta.env.VITE_SUPABASE_URL,
+  import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY
+)
 
 function App() {
   return (
