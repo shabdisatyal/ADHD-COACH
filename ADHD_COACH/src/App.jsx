@@ -9,6 +9,7 @@ import { Recall } from '../frontend/components/pages/recall';
 import { Subjects } from '../frontend/components/pages/subjects';
 import { Study } from '../frontend/components/pages/study';
 
+
 function AnimatedRoutes() {
   const location = useLocation();
   return (
@@ -24,11 +25,6 @@ function AnimatedRoutes() {
     </div>
   );
 }
-
-const supabase=createClient(
-  import.meta.env.VITE_SUPABASE_URL,
-  import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY
-)
 
 function App() {
   return (
