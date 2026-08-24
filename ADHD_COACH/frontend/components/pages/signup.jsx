@@ -1,11 +1,17 @@
 import React, { useState } from "react";
+import { supabase } from "../../../supabaseclient";
 
+// gotta add more themes for making everything customizable. 
 const theme = {
   "--bg": "#EBF4DD",
   "--sage": "#90AB8B",
   "--forest": "#5A7863",
   "--ink": "#3B4953",
 };
+
+
+
+
 
 export const Signup = () => {
   const [form, setForm] = useState({ email: "", password: "", name: "" });
@@ -14,10 +20,33 @@ export const Signup = () => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
+  //submit handling
   const handleSubmit = (e) => {
     e.preventDefault();
+    async const { data, error } = await supabase.auth.signUp(
+  {
+    email: FormData.email,
+    password: FormData.password,
+    options: {
+      data: {
+        first_name: FormData.first_name,
+        age: FormData.age,
+      }
+    }
+  }
+)
     console.log(form);
   };
+
+
+
+
+
+
+
+
+
+// FORM DESIGN 
 
   return (
     <div
@@ -55,6 +84,14 @@ export const Signup = () => {
             name="name"
             placeholder="Name"
             value={form.name}
+            onChange={handleChange}
+            className="text-left rounded-sm px-3 py-2 outline-none"
+            style={{ backgroundColor: "var(--bg)", color: "var(--ink)", border: "1px solid var(--forest)" }}
+          />
+          <input
+            name="age"
+            placeholder="age"
+            value={form.age}
             onChange={handleChange}
             className="text-left rounded-sm px-3 py-2 outline-none"
             style={{ backgroundColor: "var(--bg)", color: "var(--ink)", border: "1px solid var(--forest)" }}
