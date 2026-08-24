@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { supabase } from "../../../supabaseclient";
+import { Form } from "react-router-dom";
 
 // gotta add more themes for making everything customizable. 
 const theme = {
@@ -10,6 +11,13 @@ const theme = {
 };
 
 
+//This generates random number for Auth
+function generateRandomNonce() {
+  const charSet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+  const randomValues = new Uint32Array(10);
+  crypto.getRandomValues(randomValues);
+  return Array.from(randomValues).map((val) => charSet[val % charSet.length]).join('');
+}
 
 
 
@@ -39,6 +47,15 @@ export const Signup = () => {
   };
 
 
+//updating incase the userforgets pw
+const handleUpdate = (e) => {
+    e.preventDefault();
+    const { data, error } = await supabase.auth.updateUser({
+    password: FormData.password,
+    nonce: generateRandomNonce()
+})
+
+}
 
 
 
@@ -107,6 +124,7 @@ export const Signup = () => {
           </div>
         </div>
       </form>
+      <a onClick={handleUpdate}> Forgot Password? No worries. </a>
     </div>
   );
 };
