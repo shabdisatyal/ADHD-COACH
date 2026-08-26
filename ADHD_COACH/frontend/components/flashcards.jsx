@@ -1,6 +1,7 @@
 import { useState, useEffect, useCallback } from "react";
 
 const PALETTE = {
+
   bg: "#EBF4DD",
   panel: "#FFFFFF",
   ring: "#CFE0BE",
@@ -8,10 +9,11 @@ const PALETTE = {
   break: "#90AB8B",
   text: "#3B4953",
   textDim: "#6E8079",
+
 };
 
 
-];
+
 
 export const DEFAULT_CARDS = [
   { front: "", back: "" },

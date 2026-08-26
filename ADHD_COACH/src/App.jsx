@@ -8,6 +8,7 @@ import { Manage } from '../frontend/components/pages/manage';
 import { Recall } from '../frontend/components/pages/recall';
 import { Subjects } from '../frontend/components/pages/subjects';
 import { Study } from '../frontend/components/pages/study';
+import { Signup } from '../frontend/components/pages/signup';
 
 
 function AnimatedRoutes() {
@@ -15,7 +16,8 @@ function AnimatedRoutes() {
   return (
     <div key={location.pathname} className="page-fade">
       <Routes location={location}>
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={<Signup/>} />
+        <Route path="/home" element={<Home />} />
         <Route path="/progress" element={<Progress />} />
         <Route path="/subjects" element={<Subjects />} />
         <Route path="/recall" element={<Recall />} />
