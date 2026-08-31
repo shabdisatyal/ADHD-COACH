@@ -1,6 +1,6 @@
 
 import { useState, useEffect } from 'react';
-import { TodoModal } from '../TodoModal';
+import Todomodal from '../Todomodal';
 
 
 

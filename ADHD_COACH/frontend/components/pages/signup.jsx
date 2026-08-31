@@ -11,7 +11,7 @@ const theme = {
 
 // This generates a random string for the password-reset nonce (not used by
 // Supabase directly — kept here in case you wire up your own verification
-// step, but the actual reset flow below uses Supabase's built-in email link).
+// step, but the actual reset flow below uses Supabase's built-in email link)
 function generateRandomNonce() {
   const charSet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
   const randomValues = new Uint32Array(10);
