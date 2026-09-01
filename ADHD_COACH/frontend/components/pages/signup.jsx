@@ -97,6 +97,7 @@ export const Signup = () => {
         <div className="input flex flex-col gap-3">
           <input
             name="email"
+            type="email"
             placeholder="Email"
             value={form.email}
             onChange={handleChange}
