@@ -8,7 +8,7 @@ const NAV_ITEMS = [
   { to: '/recall', label: 'Recall', icon: Brain },
   { to: '/study', label: 'Study', icon: PenLine },
   { to: '/manage', label: 'Manage', icon: Settings },
-  { to: '/signup', label: 'Sign Up', icon: UserPlus },
+  { to: '/profile', label: 'Profile', icon: UserPlus },
 ];
 
 export function NavButtons() {

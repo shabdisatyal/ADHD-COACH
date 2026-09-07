@@ -9,8 +9,31 @@ const theme = {
 export default function Profile() {
    
    <div className="Profile">
-        <div className="ProfilePicture"></div>
-        <div className="">ProfileDetails</div>
+        
+        <div className="ProfilePicture">
+
+
+        </div>
+            
+
+
+
+
+
+
+
+
+       
+        <div className="ProfileDetails">
+            <form action="POST" className="UserDetails">
+                <input type="text" className="" />
+                <input type="password" className="" />
+                <input type="" className="" />
+            </form>
+
+        <div className="ProfileSettings"></div>
+        </div>
+
 
 
 

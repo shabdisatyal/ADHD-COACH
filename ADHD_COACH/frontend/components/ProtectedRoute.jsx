@@ -6,7 +6,7 @@ export const ProtectedRoute = ({ children }) => {
   const { session, loading } = useAuth();
 
   if (loading) return <div>Loading...</div>;
-  if (!session) return <Navigate to="/" replace />;
+  if (!session) return <Navigate to="/signup" replace />;
 
   return children;
 };

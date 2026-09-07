@@ -11,12 +11,13 @@ import { Subjects } from '../frontend/components/pages/subjects';
 import { Study } from '../frontend/components/pages/study';
 import { Signup } from '../frontend/components/pages/signup';
 
+
 function AnimatedRoutes() {
   const location = useLocation();
   return (
     <div key={location.pathname} className="page-fade">
       <Routes location={location}>
-        <Route path="/" element={<Signup />} />
+        <Route path="/" element={<Home />} />
         <Route path="/home" element={<Home />} />
         <Route path="/study" element={<Study />} />
         <Route path="/progress" element={<ProtectedRoute><Progress /></ProtectedRoute>} />
