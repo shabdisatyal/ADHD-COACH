@@ -9,7 +9,7 @@ const theme = {
   "--border": "#4c634c",
   "--muted": "#91be9e",
   "--text": "#FFFFFF",
-  "--accent": "#ff98d6",
+  "--accent": "#99b79f",
   "--ink": "#0E1F14",
   "--pink": "#F6A8CB",
   "--pink-hover": "#F393BE",

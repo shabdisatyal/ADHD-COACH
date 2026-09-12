@@ -6,10 +6,12 @@ import { NavButtons } from '../frontend/components/NavButtons';
 import { Home } from '../frontend/components/pages/home';
 import { Progress } from '../frontend/components/pages/progress';
 import { Manage } from '../frontend/components/pages/manage';
-import { Recall } from '../frontend/components/pages/recall';
+
 import { Subjects } from '../frontend/components/pages/subjects';
 import { Study } from '../frontend/components/pages/study';
 import { Signup } from '../frontend/components/pages/signup';
+import { Signin } from '../frontend/components/pages/signin';
+
 
 
 function AnimatedRoutes() {
@@ -21,9 +23,10 @@ function AnimatedRoutes() {
         <Route path="/home" element={<Home />} />
         <Route path="/study" element={<Study />} />
         <Route path='/signup' element={<Signup/>} />
+        <Route path='/signin' element={<Signin/>} />
         <Route path="/progress" element={<ProtectedRoute><Progress /></ProtectedRoute>} />
         <Route path="/subjects" element={<ProtectedRoute><Subjects /></ProtectedRoute>} />
-        <Route path="/recall" element={<ProtectedRoute><Recall /></ProtectedRoute>} />
+      
         <Route path="/manage" element={<ProtectedRoute><Manage /></ProtectedRoute>} />
         <Route path="*" element={<div>404 — oh! you landed to 'OUT OF THE BOX' </div>} />
       </Routes>
