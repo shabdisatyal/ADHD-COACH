@@ -20,11 +20,12 @@ function AnimatedRoutes() {
         <Route path="/" element={<Home />} />
         <Route path="/home" element={<Home />} />
         <Route path="/study" element={<Study />} />
+        <Route path='/signup' element={<Signup/>} />
         <Route path="/progress" element={<ProtectedRoute><Progress /></ProtectedRoute>} />
         <Route path="/subjects" element={<ProtectedRoute><Subjects /></ProtectedRoute>} />
         <Route path="/recall" element={<ProtectedRoute><Recall /></ProtectedRoute>} />
         <Route path="/manage" element={<ProtectedRoute><Manage /></ProtectedRoute>} />
-        <Route path="*" element={<div>404 — page not found</div>} />
+        <Route path="*" element={<div>404 — oh! you landed to 'OUT OF THE BOX' </div>} />
       </Routes>
     </div>
   );

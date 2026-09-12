@@ -1,5 +1,5 @@
 import { Navigate } from 'react-router-dom';
-
+import { Signup } from './pages/signup';
 import { useAuth } from '../../authcontext';
 
 export const ProtectedRoute = ({ children }) => {
