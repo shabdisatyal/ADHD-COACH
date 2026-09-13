@@ -5,7 +5,7 @@ import { BarChart3, BookOpen, Brain, PenLine, Settings, Menu, X, UserPlus } from
 const NAV_ITEMS = [
   { to: '/progress', label: 'Progress', icon: BarChart3 },
   { to: '/subjects', label: 'Subjects', icon: BookOpen },
-  { to: '/recall', label: 'Recall', icon: Brain },
+  { to: '/flashcard', label: 'Recall', icon: Brain },
   { to: '/study', label: 'Study', icon: PenLine },
   { to: '/manage', label: 'Manage', icon: Settings },
   { to: '/profile', label: 'Profile', icon: UserPlus },

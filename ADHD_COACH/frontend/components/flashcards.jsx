@@ -23,7 +23,7 @@ export const DEFAULT_CARDS = [
  
 const TRANSITION_MS = 220;
 
-export default function Flashcard({ cards = DEFAULT_CARDS }) {
+export function Flashcard({ cards = DEFAULT_CARDS }) {
   const [index, setIndex] = useState(0);
   const [flipped, setFlipped] = useState(false);
   const [known, setKnown] = useState(() => new Set());

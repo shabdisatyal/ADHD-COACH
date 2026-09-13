@@ -25,22 +25,23 @@ export function Card({ text, label }) {
   const { currentText, currentIndex, shuffle } = useFolderShuffle(text);
 
   return (
-    <div className="TextShufflerContainer w-full mx-auto mt-0" onClick={shuffle}>
-      <div className="relative w-full overflow-hidden rounded-sm">
-        <img
-          src="https://i.pinimg.com/1200x/48/ac/d9/48acd9ee8d4190419df62f63a33c58d9.jpg"
-          alt={label}
-          className="w-full h-full object-cover"
-        />
+    <div
+      className="TextShufflerContainer relative w-screen h-dvh overflow-hidden"
+      onClick={shuffle}
+    >
+      <img
+        src="https://i.pinimg.com/1200x/a9/6b/bb/a96bbb2270a37dedbdda5bbc6b8015be.jpg"
+        alt={label}
+        className="absolute inset-0 w-full h-full object-cover"
+      />
 
-        <div className="absolute inset-0 flex items-center justify-center px-6">
-          <p className="text-[#5A7863] text-4xl font-fascinate text-center px-4 py-2 rounded-md">
-            {currentText}
-          </p>
-        </div>
+      <div className="absolute inset-0 flex items-center justify-center px-6">
+        <p className="text-[#5A7863] text-4xl font-fascinate text-center px-4 py-2 rounded-md">
+          {currentText}
+        </p>
       </div>
 
-      <div className="dots flex justify-center gap-2 mt-2">
+      <div className="dots absolute bottom-6 left-0 right-0 flex justify-center gap-2">
         {text.map((_, i) => (
           <span
             key={i}

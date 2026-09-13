@@ -6,7 +6,7 @@ import { NavButtons } from '../frontend/components/NavButtons';
 import { Home } from '../frontend/components/pages/home';
 import { Progress } from '../frontend/components/pages/progress';
 import { Manage } from '../frontend/components/pages/manage';
-
+import { Flashcard } from '../frontend/components/flashcards';
 import { Subjects } from '../frontend/components/pages/subjects';
 import { Study } from '../frontend/components/pages/study';
 import { Signup } from '../frontend/components/pages/signup';
@@ -24,6 +24,7 @@ function AnimatedRoutes() {
         <Route path="/study" element={<Study />} />
         <Route path='/signup' element={<Signup/>} />
         <Route path='/signin' element={<Signin/>} />
+        <Route path='/flashcard' element={<Flashcard/>} />
         <Route path="/progress" element={<ProtectedRoute><Progress /></ProtectedRoute>} />
         <Route path="/subjects" element={<ProtectedRoute><Subjects /></ProtectedRoute>} />
       
