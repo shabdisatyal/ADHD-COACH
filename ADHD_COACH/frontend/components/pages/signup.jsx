@@ -1,25 +1,25 @@
 import React, { useState } from "react";
 import { supabase } from "../../../supabaseclient";
-import { Signin } from "./signin";
 
-//to add custom color changer 
+// simple, functional names — bg/panel describe where the color goes,
+// not what the color looks like, so swapping values later stays easy
 const theme = {
-  "--bg": "#0B1710",
-  "--panel": "#0E1F14",
-  "--panel-border": "#1E3324",
-  "--border": "#4c634c",
-  "--muted": "#91be9e",
-  "--text": "#FFFFFF",
-  "--accent": "#99b79f",
-  "--ink": "#0E1F14",
-  "--pink": "#F6A8CB",
-  "--pink-hover": "#F393BE",
-  "--error": "#F87171",
+  "--bg": "#FFFFFF",
+  "--panel": "rgba(0,0,0,0.04)",       // faint dark glass, sits on white
+  "--panelBorder": "rgba(0,0,0,0.12)",
+  "--titlebar": "rgba(0,0,0,0.05)",
+  "--border": "rgba(0,0,0,0.2)",
+  "--text": "#000000",
+  "--ink": "#FFFFFF",                  // text on the button
+  "--button": "#000000",
+  "--buttonHover": "#333333",
+  "--error": "#000000",
 };
 
 export const Signup = () => {
   const [form, setForm] = useState({ email: "", password: "", name: "", age: "" });
   const [errorMsg, setErrorMsg] = useState("");
+  const [statusMsg, setStatusMsg] = useState("");
   const [loading, setLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
 
@@ -30,6 +30,7 @@ export const Signup = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setErrorMsg("");
+    setStatusMsg("");
     setLoading(true);
 
     const { data, error } = await supabase.auth.signUp({
@@ -50,12 +51,13 @@ export const Signup = () => {
       return;
     }
 
-    console.log(data);
+    setStatusMsg("Check your email for a verification link to finish setting up your account.");
   };
 
   const handleUpdate = async (e) => {
     e.preventDefault();
     setErrorMsg("");
+    setStatusMsg("");
 
     if (!form.email) {
       setErrorMsg("Enter your email above first, then click 'Forgot Password?'");
@@ -71,33 +73,46 @@ export const Signup = () => {
       return;
     }
 
-    console.log("Password reset email sent:", data);
+    setStatusMsg("Password reset email sent — check your inbox.");
   };
 
   const inputClass =
-    "w-full bg-transparent text-[var(--text)] text-sm py-2 border-b border-[var(--border)] outline-none focus:border-[var(--accent)] transition-colors";
-  const labelClass = "text-[var(--muted)] text-xs uppercase tracking-wide";
+    "w-full bg-transparent text-[var(--text)] text-sm py-2 border-b border-[var(--border)] outline-none focus:border-[var(--button)] transition-colors";
+  const labelClass = "text-[var(--text)]/60 text-xs uppercase tracking-wide";
 
   return (
     <div
-      style={theme}
       className="min-h-screen w-full flex items-center justify-center bg-[var(--bg)] px-4 py-10"
+      style={{
+        ...theme,
+        backgroundImage:
+          "radial-gradient(circle, var(--border) 1px, transparent 1px)",
+        backgroundSize: "38px 38px",
+      }}
     >
-      <div className="relative w-full max-w-3xl bg-[var(--panel)] border border-[var(--panel-border)] rounded-2xl shadow-2xl flex flex-col md:flex-row overflow-visible">
-        {/* left: form */}
-        <div className="flex-1 p-10 md:pr-16">
-          <div className="flex items-center gap-4 mb-8">
-            <div className="w-11 h-11 rounded-full bg-[var(--accent)] flex items-center justify-center text-[var(--ink)] text-lg font-bold shrink-0">
-              C
-            </div>
-            <div>
-              <h1 className="text-[var(--text)] text-2xl font-extrabold tracking-tight leading-none">
-                CREATE ACCOUNT
-              </h1>
-              <p className="text-[var(--muted)] text-sm mt-1">
-                Start building progressive study habits.
-              </p>
-            </div>
+      {/* mac-style window */}
+      <div className="w-full max-w-md bg-[var(--panel)] border border-[var(--panelBorder)] rounded-xl shadow-2xl overflow-hidden">
+        {/* title bar */}
+        <div className="relative flex items-center h-10 px-4 bg-[var(--titlebar)] border-b border-[var(--panelBorder)]">
+          <div className="flex items-center gap-2">
+            <span className="w-3 h-3 rounded-full bg-[#FF5F57]" />
+            <span className="w-3 h-3 rounded-full bg-[#FFBD2E]" />
+            <span className="w-3 h-3 rounded-full bg-[#28C840]" />
+          </div>
+          <p className="absolute left-1/2 -translate-x-1/2 text-xs font-medium text-[var(--text)]/60">
+            sign up
+          </p>
+        </div>
+
+        {/* window content */}
+        <div className="p-8">
+          <div className="mb-8">
+            <h1 className="text-[var(--text)] text-2xl font-extrabold tracking-tight leading-none">
+              create account
+            </h1>
+            <p className="text-[var(--text)]/60 text-sm mt-1">
+              start building progressive study habits.
+            </p>
           </div>
 
           <form onSubmit={handleSubmit} className="flex flex-col gap-6">
@@ -127,7 +142,7 @@ export const Signup = () => {
                 type="button"
                 onClick={() => setShowPassword((s) => !s)}
                 aria-label={showPassword ? "Hide password" : "Show password"}
-                className="absolute right-0 bottom-2 text-[var(--muted)] hover:text-[var(--accent)] transition-colors"
+                className="absolute right-0 bottom-2 text-[var(--text)]/60 hover:text-[var(--button)] transition-colors"
               >
                 {showPassword ? (
                   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -169,12 +184,16 @@ export const Signup = () => {
               <p className="text-sm text-[var(--error)] -mt-2">{errorMsg}</p>
             )}
 
+            {statusMsg && (
+              <p className="text-sm text-[var(--button)] -mt-2">{statusMsg}</p>
+            )}
+
             <button
               type="submit"
               disabled={loading}
-              className="w-full rounded-full py-3 font-bold text-[var(--ink)] bg-[var(--pink)] hover:bg-[var(--pink-hover)] transition-colors disabled:opacity-60"
+              className="w-full rounded-full py-3 font-bold text-[var(--ink)] bg-[var(--button)] hover:bg-[var(--buttonHover)] transition-colors disabled:opacity-60"
             >
-              {loading ? "Signing up..." : "SIGN UP"}
+              {loading ? "signing up..." : "sign up"}
             </button>
           </form>
 
@@ -182,25 +201,14 @@ export const Signup = () => {
             <button
               type="button"
               onClick={handleUpdate}
-              className="text-[var(--muted)] underline bg-transparent border-none cursor-pointer hover:text-[var(--accent)] transition-colors"
+              className="text-[var(--text)]/60 underline bg-transparent border-none cursor-pointer hover:text-[var(--button)] transition-colors"
             >
-              Forgot Password?
+              forgot password?
             </button>
-            <a href="/signin" className="text-[var(--muted)]">
-              Have an account?{" "}
-              <span className="text-[var(--accent)] font-semibold">Log in</span>
+            <a href="/signin" className="text-[var(--text)]/60">
+              have an account?{" "}
+              <span className="text-[var(--button)] font-semibold">log in</span>
             </a>
-          </div>
-        </div>
-
-        {/* right: decorative panel */}
-        <div className="hidden md:block relative w-64 shrink-0">
-          <div className="absolute -right-6 top-1/2 -translate-y-1/2 w-72 h-80 rounded-2xl bg-[var(--accent)] p-8 flex flex-col justify-end shadow-xl">
-            <p className="text-[var(--ink)] text-2xl font-extrabold leading-tight relative mt-40">
-              BUILD FOCUS,
-              <br />
-              <span className="font-black">STUDY SMARTER</span> ✦
-            </p>
           </div>
         </div>
       </div>

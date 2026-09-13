@@ -18,7 +18,7 @@ export function NavButtons() {
     <div className="w-full flex flex-col items-end pl-6">
       <button
         onClick={() => setOpen(!open)}
-        className="flex items-center gap-2 bg-[#4A5D45] text-white px-5 py-2 rounded-full hover:bg-[#5A7863] transition-colors cursor-pointer mt-6 mb-3"
+        className="flex items-center gap-3 bg-[#9ED3DC] text-white px-5 py-2 rounded-full hover:bg-[#BBD5DA] transition-colors cursor-pointer mt-6 mr-7 mb-3"
       >
         {open ? <X size={18} /> : <Menu size={18} />}
         <span>{open ? 'Close' : ''}</span>
@@ -29,10 +29,10 @@ export function NavButtons() {
           open ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
         }`}
       >
-        <div className="bg-[#90AB8B] py-6 px-4 flex flex-wrap gap-4 justify-center">
+        <div className="bg-none py-6 px-4 flex flex-wrap gap-4 justify-center">
           {NAV_ITEMS.map(({ to, label, icon: Icon }) => (
             <Link key={to} to={to} onClick={() => setOpen(false)}>
-              <div className="flex flex-col items-center justify-center gap-2 bg-[#4A5D45] hover:bg-[#5A7863] text-white w-24 h-24 rounded-xl cursor-pointer transition-colors">
+              <div className="flex flex-col items-center justify-center gap-2 bg-[#BBD5DA] hover:bg-[#DFF1F1] text-white hover:text-[#9ED3DC] w-24 h-24 rounded-xl cursor-pointer transition-colors">
                 <Icon size={28} />
                 <span className="text-xs">{label}</span>
               </div>

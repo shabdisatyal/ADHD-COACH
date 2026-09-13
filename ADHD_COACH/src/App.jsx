@@ -10,6 +10,7 @@ import { Flashcard } from '../frontend/components/flashcards';
 import { Subjects } from '../frontend/components/pages/subjects';
 import { Study } from '../frontend/components/pages/study';
 import { Signup } from '../frontend/components/pages/signup';
+import { Profile } from '../frontend/components/pages/profile';
 import { Signin } from '../frontend/components/pages/signin';
 
 
@@ -26,10 +27,11 @@ function AnimatedRoutes() {
         <Route path='/signin' element={<Signin/>} />
         <Route path='/flashcard' element={<Flashcard/>} />
         <Route path="/progress" element={<ProtectedRoute><Progress /></ProtectedRoute>} />
+        <Route path="/profile" element={<ProtectedRoute><Profile /></ProtectedRoute>} />
         <Route path="/subjects" element={<ProtectedRoute><Subjects /></ProtectedRoute>} />
       
         <Route path="/manage" element={<ProtectedRoute><Manage /></ProtectedRoute>} />
-        <Route path="*" element={<div>404 — oh! you landed to 'OUT OF THE BOX' </div>} />
+        <Route path="*" element={<div>oh! you landed to 'OUT OF THE BOX' </div>} />
       </Routes>
     </div>
   );
@@ -37,9 +39,9 @@ function AnimatedRoutes() {
 
 function App() {
   return (
-    <div className="Nonheader min-h-screen bg-[#F5F0C8]">
+    <div className="Nonheader min-h-screen bg-[#DFF1F1]">
       <AuthProvider>
-        <header className="bg-[#90AB8B] flex flex-col items-start pt-6 pb-3">
+        <header className="bg-[#FFFAF0] flex flex-col items-start pt-6 pb-3">
           <Link to="/">
             <h1 className="titletext font-fascinate ml-8 text-5xl">Careme⟌</h1>
           </Link>
@@ -48,7 +50,7 @@ function App() {
 
         <AnimatedRoutes />
 
-        <hr className="mt-0 h-0.5 bg-[#90AB8B] border-0" />
+       
       </AuthProvider>
     </div>
   );

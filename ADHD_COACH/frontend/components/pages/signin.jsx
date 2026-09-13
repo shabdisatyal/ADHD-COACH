@@ -1,19 +1,21 @@
 import React, { useState } from "react";
 import { supabase } from "../../../supabaseclient";
 
-//to add custom color changer 
+// placeholder palette — black/white/gray only. swap these once you've
+// picked real colors; everything below reads from these tokens.
 const theme = {
-  "--bg": "#0B1710",
-  "--panel": "#0E1F14",
-  "--panel-border": "#1E3324",
-  "--border": "#4c634c",
-  "--muted": "#91be9e",
-  "--text": "#FFFFFF",
-  "--accent": "#99b79f",
-  "--ink": "#0E1F14",
-  "--pink": "#F6A8CB",
-  "--pink-hover": "#F393BE",
-  "--error": "#F87171",
+  "--bg": "#fdfdfd",
+  "--panel": "#FFFFFF",
+  "--panel-border": "#E0E0E0",
+  "--titlebar": "#EDEDED",
+  "--border": "#D4D4D4",
+  "--muted": "#8A8A8A",
+  "--text": "#111111",
+  "--accent": "#111111",
+  "--ink": "#FFFFFF",
+  "--button": "#111111",
+  "--button-hover": "#2A2A2A",
+  "--error": "#111111",
 };
 
 export const Signin = () => {
@@ -74,22 +76,37 @@ export const Signin = () => {
 
   return (
     <div
-      style={theme}
       className="min-h-screen w-full flex items-center justify-center bg-[var(--bg)] px-4 py-10"
+      style={{
+        ...theme,
+        backgroundImage:
+          "radial-gradient(circle, var(--border) 1px, transparent 1px)",
+        backgroundSize: "38px 38px",
+      }}
     >
-      <div className="relative w-full max-w-3xl bg-[var(--panel)] border border-[var(--panel-border)] rounded-2xl shadow-2xl flex flex-col md:flex-row overflow-visible">
-        {/* left: form */}
-        <div className="flex-1 p-10 md:pr-16">
-          <div className="flex items-center gap-4 mb-8">
-            
-            <div>
-              <h1 className="text-[var(--text)] text-2xl font-extrabold tracking-tight leading-none">
-                
-              </h1>
-              <p className="text-[var(--muted)] text-sm mt-1">
-                Hey! Pick up right where you left off.
-              </p>
-            </div>
+      {/* mac-style window */}
+      <div className="w-full max-w-md bg-[var(--panel)] border border-[var(--panel-border)] rounded-xl shadow-2xl overflow-hidden">
+        {/* title bar */}
+        <div className="relative flex items-center h-10 px-4 bg-[var(--titlebar)] border-b border-[var(--panel-border)]">
+          <div className="flex items-center gap-2">
+            <span className="w-3 h-3 rounded-full bg-[#FF5F57]" />
+            <span className="w-3 h-3 rounded-full bg-[#FFBD2E]" />
+            <span className="w-3 h-3 rounded-full bg-[#28C840]" />
+          </div>
+          <p className="absolute left-1/2 -translate-x-1/2 text-xs font-medium text-[var(--muted)]">
+            sign in
+          </p>
+        </div>
+
+        {/* window content */}
+        <div className="p-8">
+          <div className="mb-8">
+            <h1 className="text-[var(--text)] text-2xl font-extrabold tracking-tight leading-none">
+              welcome back
+            </h1>
+            <p className="text-[var(--muted)] text-sm mt-1">
+              pick up right where you left off.
+            </p>
           </div>
 
           <form onSubmit={handleSubmit} className="flex flex-col gap-6">
@@ -119,7 +136,7 @@ export const Signin = () => {
                 type="button"
                 onClick={() => setShowPassword((s) => !s)}
                 aria-label={showPassword ? "Hide password" : "Show password"}
-                className="absolute right-0 bottom-2 text-[var(--muted)] hover:text-[var(--accent)] transition-colors"
+                className="absolute right-0 bottom-2 text-[var(--muted)] hover:text-[var(--text)] transition-colors"
               >
                 {showPassword ? (
                   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -142,19 +159,21 @@ export const Signin = () => {
                 onChange={(e) => setRemember(e.target.checked)}
                 className="w-4 h-4 rounded border-[var(--border)] accent-[var(--accent)]"
               />
-              Remember you?
+              remember me
             </label>
 
             {errorMsg && (
-              <p className="text-sm text-[var(--error)] -mt-2">{errorMsg}</p>
+              <p className="text-sm text-[var(--error)] font-medium -mt-2">
+                {errorMsg}
+              </p>
             )}
 
             <button
               type="submit"
               disabled={loading}
-              className="w-full rounded-full py-3 font-bold text-[var(--ink)] bg-[var(--pink)] hover:bg-[var(--pink-hover)] transition-colors disabled:opacity-60"
+              className="w-full rounded-md py-3 font-bold text-[var(--ink)] bg-[var(--button)] hover:bg-[var(--button-hover)] transition-colors disabled:opacity-60"
             >
-              {loading ? "Logging in..." : "LOGIN"}
+              {loading ? "logging in..." : "login"}
             </button>
           </form>
 
@@ -162,25 +181,14 @@ export const Signin = () => {
             <button
               type="button"
               onClick={handleUpdate}
-              className="text-[var(--muted)] underline bg-transparent border-none cursor-pointer hover:text-[var(--accent)] transition-colors"
+              className="text-[var(--muted)] underline bg-transparent border-none cursor-pointer hover:text-[var(--text)] transition-colors"
             >
-              Forgot Password?
+              forgot password?
             </button>
             <a href="/signup" className="text-[var(--muted)]">
-              New here?{" "}
-              <span className="text-[var(--accent)] font-semibold">Create account</span>
+              new here?{" "}
+              <span className="text-[var(--text)] font-semibold">create account</span>
             </a>
-          </div>
-        </div>
-
-        {/* right: decorative panel */}
-        <div className="hidden md:block relative w-64 shrink-0">
-          <div className="absolute -right-6 top-1/2 -translate-y-1/2 w-72 h-80 rounded-2xl bg-[var(--accent)] p-8 flex flex-col justify-end shadow-xl">
-            <p className="text-[var(--ink)] text-2xl font-extrabold leading-tight relative mt-40">
-              STAY ON TRACK,
-              <br />
-              <span className="font-black">KEEP MOVING</span> ✦
-            </p>
           </div>
         </div>
       </div>
