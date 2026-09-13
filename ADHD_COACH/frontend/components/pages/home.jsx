@@ -7,7 +7,7 @@ export function Home() {
   return (
     <div className="relative">
       <Card text={textfolder[0].text} label={textfolder[0].label} />
-      <StickerPlayground />
+      
       <CardPageTwo />
       <div className="spotlight">
         <div className=""></div>

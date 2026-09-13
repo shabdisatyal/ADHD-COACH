@@ -1,10 +1,15 @@
 @import url('https://fonts.googleapis.com/css2?family=Fascinate&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Petit+Formal+Script&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Amatic+SC:wght@400;700&family=La+Belle+Aurore&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Amatic+SC:wght@400;700&display=swap');
+
 @import "tailwindcss";
 
 
 @theme {
-  --font-fascinate: "Fascinate", system-ui;
+  --font-fascinate: "La Belle Aurore", cursive;
+  --font-caremel: "Amatic SC", sans-serif;
   --font-lexend : "Lexend", sans-serif;
+
   
 }

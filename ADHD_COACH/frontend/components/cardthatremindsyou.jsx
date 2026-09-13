@@ -28,6 +28,7 @@ export function Card({ text, label }) {
     <div
       className="TextShufflerContainer relative w-screen h-dvh overflow-hidden"
       onClick={shuffle}
+    
     >
       <img
         src="https://i.pinimg.com/1200x/a9/6b/bb/a96bbb2270a37dedbdda5bbc6b8015be.jpg"
@@ -36,7 +37,7 @@ export function Card({ text, label }) {
       />
 
       <div className="absolute inset-0 flex items-center justify-center px-6">
-        <p className="text-[#5A7863] text-4xl font-fascinate text-center px-4 py-2 rounded-md">
+        <p className="text-[#5A7863] text-4xl cursor-pointer font-fascinate text-center px-4 py-2 rounded-md">
           {currentText}
         </p>
       </div>

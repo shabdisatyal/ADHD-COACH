@@ -41,7 +41,7 @@ function App() {
       <AuthProvider>
         <header className="bg-[#90AB8B] flex flex-col items-start pt-6 pb-3">
           <Link to="/">
-            <h1 className="titletext font-fascinate ml-8 text-4xl">CAREMEL</h1>
+            <h1 className="titletext font-fascinate ml-8 text-5xl">Careme⟌</h1>
           </Link>
           <NavButtons />
         </header>
