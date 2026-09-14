@@ -8,6 +8,9 @@ const theme = {
   "--ink": "#3B4953",
 };
 
+
+// THEME - FADE BLUE, GREY, OFFWHITE, AND BLACKK
+
 function formatDate(iso) {
   if (!iso) return "";
   return new Date(iso).toLocaleDateString("en-US", {
@@ -22,7 +25,7 @@ function initialsFrom(name, email) {
   return base.trim().charAt(0).toUpperCase();
 }
 
-export function Profile() {
+export  function Profile() {
   const [user, setUser] = useState(null);
   const [newPassword, setNewPassword] = useState("");
   const [newEmail, setNewEmail] = useState("");
@@ -108,7 +111,6 @@ export function Profile() {
 
           <div className="w-full bg-white rounded-xl border border-[var(--sage)]/30 shadow-sm p-5 text-center md:text-left">
             <p className="text-lg font-bold text-[var(--forest)]">
-              {name || "Your name"}
             </p>
             <p className="text-sm text-[var(--ink)]/70 mt-1 break-all">{email}</p>
             <p className="text-xs text-[var(--sage)] mt-4 uppercase tracking-wide">

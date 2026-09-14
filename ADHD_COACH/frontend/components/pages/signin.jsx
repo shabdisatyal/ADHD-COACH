@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { supabase } from "../../../supabaseclient";
+import { Navigate, useNavigate } from "react-router-dom";
 
-// placeholder palette — black/white/gray only. swap these once you've
-// picked real colors; everything below reads from these tokens.
+
 const theme = {
   "--bg": "#fdfdfd",
   "--panel": "#FFFFFF",
@@ -18,17 +18,22 @@ const theme = {
   "--error": "#111111",
 };
 
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 export const Signin = () => {
   const [form, setForm] = useState({ email: "", password: "" });
   const [remember, setRemember] = useState(false);
   const [errorMsg, setErrorMsg] = useState("");
   const [loading, setLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
+  const navigate=useNavigate();
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
+    
   };
-
+//////////////////////////////////// LOGIN HANDLER ////////////////////////////////////
   const handleSubmit = async (e) => {
     e.preventDefault();
     setErrorMsg("");
@@ -46,9 +51,11 @@ export const Signin = () => {
       return;
     }
 
+    navigate("/profile")
     console.log(data);
   };
 
+  //////////////////////////////////// FORGOT PASSWORD UPDATE HANDLER ////////////////////////////////////
   const handleUpdate = async (e) => {
     e.preventDefault();
     setErrorMsg("");
@@ -70,6 +77,7 @@ export const Signin = () => {
     console.log("Password reset email sent:", data);
   };
 
+  //////////////////////////////////// UI W TAILWIND SKELETON ////////////////////////////////////
   const inputClass =
     "w-full bg-transparent text-[var(--text)] text-sm py-2 border-b border-[var(--border)] outline-none focus:border-[var(--accent)] transition-colors";
   const labelClass = "text-[var(--muted)] text-xs uppercase tracking-wide";

@@ -60,6 +60,9 @@ const STATS = [
 ];
 // "1 in 20" -> prefix "1 in ", target 20, suffix ""
 // "3,000+"  -> prefix "",      target 3000, suffix "+", comma true
+
+
+//this is not legit, I STILL HAVE TO MAKE SURE WHATS TRUE!!!
 function parseStat(raw) {
   const matches = [...raw.matchAll(/\d[\d,]*/g)];
   if (matches.length === 0) {
