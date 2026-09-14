@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { supabase } from "../../../supabaseclient";
+import { Navigate } from "react-router-dom";
 
 // simple, functional names — bg/panel describe where the color goes,
 // not what the color looks like, so swapping values later stays easy

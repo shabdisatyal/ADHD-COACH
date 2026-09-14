@@ -77,7 +77,7 @@ export const Signin = () => {
     console.log("Password reset email sent:", data);
   };
 
-  //////////////////////////////////// UI W TAILWIND SKELETON ////////////////////////////////////
+  //////////////////////////////////// UI W TAILWIND SKELETON 
   const inputClass =
     "w-full bg-transparent text-[var(--text)] text-sm py-2 border-b border-[var(--border)] outline-none focus:border-[var(--accent)] transition-colors";
   const labelClass = "text-[var(--muted)] text-xs uppercase tracking-wide";

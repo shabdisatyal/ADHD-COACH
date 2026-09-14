@@ -2,14 +2,19 @@ import { useEffect, useState } from "react";
 import { supabase } from "../../../supabaseclient";
 
 const theme = {
-  "--bg": "#EBF4DD",
-  "--sage": "#90AB8B",
-  "--forest": "#5A7863",
-  "--ink": "#3B4953",
+  "--bg": "#fdfdfd",
+  "--panel": "#FFFFFF",
+  "--panel-border": "#E0E0E0",
+  "--titlebar": "#EDEDED",
+  "--border": "#D4D4D4",
+  "--muted": "#8A8A8A",
+  "--text": "#111111",
+  "--accent": "#9ED3DC",
+  "--ink": "#FFFFFF",
+  "--button": "#c9f1f8",
+  "--button-hover": "#2A2A2A",
+  "--error": "#111111",
 };
-
-
-// THEME - FADE BLUE, GREY, OFFWHITE, AND BLACKK
 
 function formatDate(iso) {
   if (!iso) return "";
@@ -25,7 +30,7 @@ function initialsFrom(name, email) {
   return base.trim().charAt(0).toUpperCase();
 }
 
-export  function Profile() {
+export function Profile() {
   const [user, setUser] = useState(null);
   const [newPassword, setNewPassword] = useState("");
   const [newEmail, setNewEmail] = useState("");
@@ -88,95 +93,115 @@ export  function Profile() {
     window.location.href = "/signin";
   };
 
+
+
+
+
+
+  //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   const inputClass =
-    "w-full bg-transparent text-[var(--ink)] text-sm py-2 border-b border-[var(--sage)]/40 outline-none focus:border-[var(--forest)] transition-colors";
-  const labelClass = "text-[var(--forest)]/70 text-xs uppercase tracking-wide";
+    "w-full bg-transparent text-[var(--text)] text-sm py-2 border-b border-[var(--border)] outline-none focus:border-[var(--accent)] transition-colors";
+  const labelClass = "text-[var(--muted)] text-xs uppercase tracking-wide";
 
   return (
-    <div style={theme} className="min-h-screen w-full bg-[var(--bg)] px-6 py-12">
-      <div className="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-[280px_1fr] gap-8">
-        {/* left: avatar + details card */}
-        <div className="flex flex-col items-center md:items-start gap-4">
-          <div className="w-28 h-28 rounded-full bg-[var(--forest)] flex items-center justify-center text-4xl font-bold text-[var(--bg)] overflow-hidden">
-            {user?.user_metadata?.avatar_url ? (
-              <img
-                src={user.user_metadata.avatar_url}
-                alt="Profile"
-                className="w-full h-full object-cover"
-              />
-            ) : (
-              initialsFrom(name, email)
+    <div
+      className="min-h-screen w-full flex items-center justify-center bg-[var(--bg)] px-4 py-10"
+      style={{
+        ...theme,
+        backgroundImage: "radial-gradient(circle, var(--border) 1px, transparent 1px)",
+        backgroundSize: "38px 38px",
+      }}
+    >
+      {/* mac-style window */}
+      <div className="w-full max-w-8xl bg-[var(--panel)] border border-[var(--panel-border)] rounded-xl shadow-1xl overflow-hidden">
+        {/* title bar */}
+        
+
+        {/* window content */}
+        <div className="p-8 flex flex-col sm:flex-row gap-">
+          {/* left: avatar + details, ~40% width */}
+          <div className="sm:w-[68%] flex flex-col items-center sm:items-start text-center sm:text-left shrink-0">
+            <div className="w-20 h-20 rounded-full bg-[var(--button)] flex items-center justify-center text-2xl font-bold text-[var(--ink)] overflow-hidden">
+              {user?.user_metadata?.avatar_url ? (
+                <img
+                  src={user.user_metadata.avatar_url}
+                  alt="Profile"
+                  className="w-full h-full object-cover"
+                />
+              ) : (
+                initialsFrom(name, email)
+              )}
+            </div>
+            <h1 className="text-[var(--text)] text-xl font-extrabold tracking-tight leading-none mt-4">
+              {name || "your account"}
+            </h1>
+            <p className="text-[var(--muted)] text-sm mt-2 break-all">{email}</p>
+            {memberSince && (
+              <p className="text-[var(--muted)] text-xs mt-1">member since {memberSince}</p>
             )}
           </div>
 
-          <div className="w-full bg-white rounded-xl border border-[var(--sage)]/30 shadow-sm p-5 text-center md:text-left">
-            <p className="text-lg font-bold text-[var(--forest)]">
-            </p>
-            <p className="text-sm text-[var(--ink)]/70 mt-1 break-all">{email}</p>
-            <p className="text-xs text-[var(--sage)] mt-4 uppercase tracking-wide">
-              Member since
-            </p>
-            <p className="text-sm text-[var(--ink)]">{memberSince || "—"}</p>
+          {/* divider */}
+          <div className="hidden sm:block w-px bg-[var(--panel-border)]" />
+          <div className="sm:hidden h-px w-full bg-[var(--panel-border)]" />
+
+          {/* right: account actions */}
+          <div className="flex-1 flex flex-col gap-6">
+            <form onSubmit={handleEmailUpdate} className="flex flex-col gap-4">
+              <div>
+                <label className={labelClass}>Email</label>
+                <input
+                  type="email"
+                  value={newEmail}
+                  onChange={(e) => setNewEmail(e.target.value)}
+                  autoComplete="username"
+                  className={inputClass}
+                />
+              </div>
+              <button
+                type="submit"
+                disabled={saving}
+                className="w-full rounded-md py-3 font-bold text-[var(--ink)] bg-[var(--button)] hover:bg-[var(--button-hover)] transition-colors disabled:opacity-60"
+              >
+                {saving ? "updating..." : "update email"}
+              </button>
+            </form>
+
+            <form onSubmit={handlePasswordUpdate} className="flex flex-col gap-4">
+              <div>
+                <label className={labelClass}>New password</label>
+                <input
+                  type="password"
+                  value={newPassword}
+                  onChange={(e) => setNewPassword(e.target.value)}
+                  autoComplete="new-password"
+                  className={inputClass}
+                />
+              </div>
+              <button
+                type="submit"
+                disabled={saving}
+                className="w-full rounded-md py-3 font-bold text-[var(--ink)] bg-[var(--button)] hover:bg-[var(--button-hover)] transition-colors disabled:opacity-60"
+              >
+                {saving ? "updating..." : "update password"}
+              </button>
+            </form>
+
+            {errorMsg && (
+              <p className="text-sm text-[var(--error)] font-medium -mt-2">{errorMsg}</p>
+            )}
+            {statusMsg && (
+              <p className="text-sm text-[var(--text)] -mt-2">{statusMsg}</p>
+            )}
+
+            <button
+              type="button"
+              onClick={handleSignOut}
+              className="text-[var(--muted)] underline bg-transparent border-none cursor-pointer hover:text-[var(--text)] transition-colors text-sm self-start"
+            >
+              sign out
+            </button>
           </div>
-        </div>
-
-        {/* right: account settings */}
-        <div className="bg-white rounded-xl border border-[var(--sage)]/30 shadow-sm p-6 flex flex-col gap-8">
-          <h2 className="text-xl font-bold text-[var(--forest)]">Account settings</h2>
-
-          <form onSubmit={handleEmailUpdate} className="flex flex-col gap-2">
-            <label className={labelClass}>Email</label>
-            <input
-              type="email"
-              value={newEmail}
-              onChange={(e) => setNewEmail(e.target.value)}
-              autoComplete="username"
-              className={inputClass}
-            />
-            <button
-              type="submit"
-              disabled={saving}
-              className="self-start mt-2 text-sm font-semibold text-[var(--forest)] hover:underline disabled:opacity-60"
-            >
-              Update email
-            </button>
-          </form>
-
-          <form onSubmit={handlePasswordUpdate} className="flex flex-col gap-2">
-            <label className={labelClass}>New password</label>
-            <input
-              type="password"
-              value={newPassword}
-              onChange={(e) => setNewPassword(e.target.value)}
-              autoComplete="new-password"
-              className={inputClass}
-            />
-            <button
-              type="submit"
-              disabled={saving}
-              className="self-start mt-2 text-sm font-semibold text-[var(--forest)] hover:underline disabled:opacity-60"
-            >
-              Update password
-            </button>
-          </form>
-
-          {(statusMsg || errorMsg) && (
-            <p
-              className={`text-sm ${
-                errorMsg ? "text-red-500" : "text-[var(--forest)]"
-              }`}
-            >
-              {errorMsg || statusMsg}
-            </p>
-          )}
-
-          <button
-            type="button"
-            onClick={handleSignOut}
-            className="self-start mt-4 rounded-full px-6 py-2 text-sm font-bold text-white bg-[var(--ink)] hover:opacity-90 transition-opacity"
-          >
-            Sign out
-          </button>
         </div>
       </div>
     </div>
