@@ -58,13 +58,13 @@ export const Signup = () => {
   };
 
 
-
+//tilting character toggle func
   const handleclick = (e) => {
 
     return(
 
       <div className="tilt">
-        <img src="frontend/components/stickers/tilt.png"/>
+        <img src="https://i.pinimg.com/1200x/79/b5/1c/79b51c64b2808d20dc05516beabd2dbe.jpg"/>
         onClick={()=>setTilted(!tilted)}
         style={
           {
