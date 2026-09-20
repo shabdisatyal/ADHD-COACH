@@ -118,7 +118,7 @@ export function Profile() {
         
 
         {/* window content */}
-        <div className="p-8 flex flex-col sm:flex-row gap-">
+        <div className="p-8 flex flex-col sm:flex-row gap-8">
           {/* left: avatar + details, ~40% width */}
           <div className="sm:w-[68%] flex flex-col items-center sm:items-start text-center sm:text-left shrink-0">
             <div className="w-20 h-20 rounded-full bg-[var(--button)] flex items-center justify-center text-2xl font-bold text-[var(--ink)] overflow-hidden">

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { supabase } from "../../../supabaseclient";
 import { Navigate } from "react-router-dom";
 
+
 // simple, functional names — bg/panel describe where the color goes,
 // not what the color looks like, so swapping values later stays easy
 const theme = {
@@ -23,6 +24,7 @@ export const Signup = () => {
   const [statusMsg, setStatusMsg] = useState("");
   const [loading, setLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
+  const [tilted,setTilted]=useState(false);
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -55,6 +57,30 @@ export const Signup = () => {
     setStatusMsg("Check your email for a verification link to finish setting up your account.");
   };
 
+
+
+  const handleclick = (e) => {
+
+    return(
+
+      <div className="tilt">
+        <img src="frontend/components/stickers/tilt.png"/>
+        onClick={()=>setTilted(!tilted)}
+        style={
+          {
+            transform:tilted? "rotate(10deg)": "rotate(0deg)",
+            transition:"transform(0.3s)"
+          }
+        }
+      </div>
+      
+    )
+
+
+
+
+
+  }
   const handleUpdate = async (e) => {
     e.preventDefault();
     setErrorMsg("");
@@ -126,6 +152,8 @@ export const Signup = () => {
                 onChange={handleChange}
                 autoComplete="username"
                 className={inputClass}
+                onClick={()=> setTilted(true)}
+                
               />
             </div>
 
@@ -138,6 +166,7 @@ export const Signup = () => {
                 onChange={handleChange}
                 autoComplete="new-password"
                 className={`${inputClass} pr-8`}
+                onClick={() => setTilted(false)}
               />
               <button
                 type="button"
