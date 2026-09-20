@@ -5,6 +5,19 @@ import { Navigate } from "react-router-dom";
 
 // simple, functional names — bg/panel describe where the color goes,
 // not what the color looks like, so swapping values later stays easy
+
+
+
+
+const bibiclick= new Audio("");
+
+
+const playSound = () => {
+  clickSound.currentTime = 0;
+  clickSound.play().catch(() => {});
+};
+
+
 const theme = {
   "--bg": "#FFFFFF",
   "--panel": "rgb(254, 249, 233)",       // faint dark glass, sits on white
@@ -100,9 +113,10 @@ export const Signup = () => {
         <img
           src="https://i.pinimg.com/736x/71/f7/3f/71f73f54dada870520d3548ad69600a8.jpg"
           alt="meow"
-          className="absolute inset-0 w-full h-full object-cover rounded-xl -z-10 transition-all duration-5500"
+          className="absolute inset-0 w-full h-full object-cover rounded-xl -z-10 transition-all duration-3500"
+          onMouseDown={}
           style={{
-            transform: tilted ? "translate(-304px, -24px)" : "translate(0px, 1px)",
+            transform: tilted ? "translate(-314px, -24px)" : "translate(0px, 1px)",
             opacity: tilted ? 1 : 0,
           }}
         />
