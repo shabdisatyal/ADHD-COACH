@@ -3,7 +3,7 @@ import { Instagram, Linkedin } from "lucide-react";
 
 export function Footer() {
   return (
-    <footer className="FooterContent w-full bg-[#dbeafe] text-black">
+    <footer className="FooterContent w-full bg-[##BBD5DA] text-black">
       <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-4 px-6 py-6 md:flex-row">
         <p className="text-sm">
           © {new Date().getFullYear()} Your Name. All rights reserved.
