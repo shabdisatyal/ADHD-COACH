@@ -9,7 +9,7 @@ import { Navigate } from "react-router-dom";
 
 
 
-const bibiclick= new Audio("");
+const clickSound= new Audio("./au");
 
 
 const playSound = () => {
@@ -113,8 +113,9 @@ export const Signup = () => {
         <img
           src="https://i.pinimg.com/736x/71/f7/3f/71f73f54dada870520d3548ad69600a8.jpg"
           alt="meow"
-          className="absolute inset-0 w-full h-full object-cover rounded-xl -z-10 transition-all duration-3500"
-          onMouseDown={}
+          className="absolute inset-0 w-full h-full object-cover cursor-pointer rounded-xl -z-10 transition-all duration-3500"
+          onMouseDown={playSound}
+          
           style={{
             transform: tilted ? "translate(-314px, -24px)" : "translate(0px, 1px)",
             opacity: tilted ? 1 : 0,
