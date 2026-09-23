@@ -12,6 +12,8 @@ import { Study } from '../frontend/components/pages/study';
 import { Signup } from '../frontend/components/pages/signup';
 import { Profile } from '../frontend/components/pages/profile';
 import { Signin } from '../frontend/components/pages/signin';
+import { Footer } from '../frontend/components/pages/Footer';
+
 
 
 
@@ -50,8 +52,9 @@ function App() {
 
         <AnimatedRoutes />
 
-       
+       <Footer/>
       </AuthProvider>
+      
     </div>
   );
 }
