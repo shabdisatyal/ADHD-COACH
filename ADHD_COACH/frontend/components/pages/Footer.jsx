@@ -9,7 +9,7 @@ export function Footer() {
           © {new Date().getFullYear()} Your Name. All rights reserved.
         </p>
 
-        <a href="frontend/components/customerprotection/privacy-policy.html" className="text-sm underline hover:opacity-70">
+        <a href="public/customerprotection/privacy-policy.html" className="text-sm underline hover:opacity-70">
           Privacy Policy
         </a>
 
