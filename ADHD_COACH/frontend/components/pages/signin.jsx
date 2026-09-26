@@ -5,7 +5,7 @@ import { Navigate, useNavigate } from "react-router-dom";
 
 const theme = {
   "--bg": "#fdfdfd",
-  "--panel": "#FFFFFF",
+  "--panel": "#FEF9E9",
   "--panel-border": "#E0E0E0",
   "--titlebar": "#EDEDED",
   "--border": "#D4D4D4",
