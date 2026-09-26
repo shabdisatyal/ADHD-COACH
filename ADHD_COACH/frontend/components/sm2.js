@@ -21,3 +21,7 @@ export function reviewCard({ interval, easeFactor, repetitions }, quality) {
 
   return { interval, easeFactor, repetitions, nextReview: nextReview.toISOString() };
 }
+
+export function defaultProgress() {
+  return { interval: 0, easeFactor: 2.5, repetitions: 0 };
+}
