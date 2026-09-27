@@ -8,7 +8,8 @@ export function reviewCard({ interval, easeFactor, repetitions }, quality) {
     repetitions += 1; //success casce that gradually increases until collapse
     if (repetitions === 1) interval = 1;
     else if (repetitions === 2) interval = 6;
-    else interval = Math.round(interval * easeFactor);
+    
+    else interval = Math.max(1, Math.round(interval * easeFactor));
   }
  
   easeFactor = Math.max(
