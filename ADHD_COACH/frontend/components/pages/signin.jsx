@@ -74,7 +74,7 @@ export const Signin = () => {
       return;
     }
 
-    console.log("Password reset email sent:", data);
+    alert("The password reset link has been sent to your gmail :3", data);
   };
 
   //////////////////////////////////// UI W TAILWIND SKELETON 
