@@ -24,7 +24,7 @@ function AnimatedRoutes() {
       <Routes location={location}>
         <Route path="/" element={<Home />} />
         <Route path="/home" element={<Home />} />
-        <Route path="/study" element={<Study />} />
+        <Route path="/study" element={<ProtectedRoute> <Study /> </ProtectedRoute>} />
         <Route path='/signup' element={<Signup/>} />
         <Route path='/signin' element={<Signin/>} />
         <Route path='/reset-password' element={<ResetPassword/>} />
