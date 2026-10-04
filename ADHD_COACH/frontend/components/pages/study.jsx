@@ -1,5 +1,5 @@
-import { BACKGROUNDS, fmt, useStudy } from "./useStudy";
 
+import { BACKGROUNDS, fmt, useStudy } from "./Usestudy";
 // UI for the Study page. All state and timer logic lives in useStudy.js.
 
 export function Study() {
