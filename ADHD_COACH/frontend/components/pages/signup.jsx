@@ -70,17 +70,8 @@ export const Signup = () => {
     setStatusMsg("Check your email for a verification link to finish setting up your account.");
   };
 
-  const handleUpdate = async (e) => {
-    e.preventDefault();
-    setErrorMsg("");
-    setStatusMsg("");
-
-    if (!form.email) {
-      setErrorMsg("Enter your email above first, then click 'Forgot Password?'");
-      return;
-    }
-
-    const { data, error } = await supabase.auth.resetPasswordForEmail(form.email, {
+  
+      const { data, error } = await supabase.auth.resetPasswordForEmail(form.email, {
       redirectTo: `${window.location.origin}/reset-password`,
     });
 
