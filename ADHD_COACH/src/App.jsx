@@ -28,7 +28,7 @@ function AnimatedRoutes() {
         <Route path='/signup' element={<Signup/>} />
         <Route path='/signin' element={<Signin/>} />
         <Route path='/reset-password' element={<ResetPassword/>} />
-        <Route path='/flashcard' element={<Flashcard/>} />
+        <Route path='/flashcard' element={<ProtectedRoute><Flashcard/></ProtectedRoute>} />
         <Route path="/profile" element={<ProtectedRoute><Profile /></ProtectedRoute>} />
         <Route path="/subjects" element={<ProtectedRoute><Subjects /></ProtectedRoute>} />
       

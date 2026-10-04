@@ -233,13 +233,7 @@ export const Signup = () => {
             </form>
 
             <div className="flex items-center justify-between mt-6 text-sm">
-              <button
-                type="button"
-                onClick={handleUpdate}
-                className="text-[var(--text)]/60 underline bg-transparent border-none cursor-pointer hover:text-[var(--button)] transition-colors"
-              >
-                forgot password?
-              </button>
+              
               <a href="/signin" className="text-[var(--text)]/60">
                 have an account?{" "}
                 <span className="text-[var(--button)] font-semibold">log in</span>
