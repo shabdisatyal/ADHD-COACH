@@ -69,7 +69,6 @@ export const Signup = () => {
 
     setStatusMsg("Check your email for a verification link to finish setting up your account.");
   };
-  };
 
   const inputClass =
     "w-full bg-transparent text-[var(--text)] text-sm py-2 border-b border-[var(--border)] outline-none focus:border-[var(--button)] transition-colors";

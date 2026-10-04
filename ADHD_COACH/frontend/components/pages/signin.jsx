@@ -23,7 +23,6 @@ const theme = {
 
 export const Signin = () => {
   const [form, setForm] = useState({ email: "", password: "" });
-  const [remember, setRemember] = useState(false);
   const [errorMsg, setErrorMsg] = useState("");
   const [loading, setLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
@@ -65,9 +64,7 @@ export const Signin = () => {
       return;
     }
 
-    const { data, error } = await supabase.auth.resetPasswordForEmail(form.email, {
-      redirectTo: `${window.location.origin}/reset-password`,
-    });
+    
 
     if (error) {
       setErrorMsg(error.message);
@@ -160,15 +157,7 @@ export const Signin = () => {
               </button>
             </div>
 
-            <label className="flex items-center gap-2 text-[var(--muted)] text-sm cursor-pointer select-none">
-              <input
-                type="checkbox"
-                checked={remember}
-                onChange={(e) => setRemember(e.target.checked)}
-                className="w-4 h-4 rounded border-[var(--border)] accent-[var(--accent)]"
-              />
-              remember me
-            </label>
+           
 
             {errorMsg && (
               <p className="text-sm text-[var(--error)] font-medium -mt-2">
