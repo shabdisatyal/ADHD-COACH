@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 
-import { useFlashcardSession } from "./useFlashcardSession";
-import { useReviewReminder } from "./useReviewReminder";
+import { useFlashcardSession } from "./Useflashcardsession";
+import { useReviewReminder } from "./Usereviewreminder";
 
 const PALETTE = {
   bg: "#FFFFFF",

@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback } from "react";
-import { supabase } from "../../supabaseclient"; // adjust path to match your project
+import { supabase } from "../../supabaseclient.js"; // adjust path to match your project
 import { getNextUpcomingReview } from "./cards.js";
 
 
