@@ -5,7 +5,7 @@ import { ProtectedRoute } from '../frontend/components/ProtectedRoute';
 import { NavButtons } from '../frontend/components/NavButtons';
 import { Home } from '../frontend/components/pages/home';
 import Manage from '../frontend/components/pages/manage';
-import { Flashcard } from '../frontend/components/Flashcards';
+import { Flashcard } from '../frontend/components/flashcards';
 import { Subjects } from '../frontend/components/pages/subjects';
 import { Study } from '../frontend/components/pages/study';
 import { Signup } from '../frontend/components/pages/signup';

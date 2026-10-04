@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+
 import { useFlashcardSession } from "./useFlashcardSession";
 import { useReviewReminder } from "./useReviewReminder";
 
@@ -254,7 +255,7 @@ function SessionNav({ onPrev, onNext, knownCount, sessionTotal }) {
   );
 }
 
-function SessionComplete({ sessionTotal, nextReview, notifyState, onNotifyMe }) {
+function SessionComplete({ sessionTotal, nextReview, notifyState, reminderError, onNotifyMe }) {
   const justFinished = sessionTotal > 0;
   const notifyBtnStyle = {
     padding: "8px 16px",
@@ -293,23 +294,11 @@ function SessionComplete({ sessionTotal, nextReview, notifyState, onNotifyMe }) 
       )}
       {notifyState === "scheduled" && (
         <p style={{ color: PALETTE.textDim, fontSize: "13px" }}>
-          We'll notify you here, keep this tab open.
+          We'll email you when it's due.
         </p>
       )}
-      {notifyState === "denied" && (
-        <p style={{ color: PALETTE.textDim, fontSize: "13px" }}>
-          Notifications are blocked in your browser settings.
-        </p>
-      )}
-      {notifyState === "too-far" && (
-        <p style={{ color: PALETTE.textDim, fontSize: "13px" }}>
-          That's more than a day out, come back closer to then and we'll remind you.
-        </p>
-      )}
-      {notifyState === "unsupported" && (
-        <p style={{ color: PALETTE.textDim, fontSize: "13px" }}>
-          Your browser doesn't support notifications.
-        </p>
+      {reminderError && (
+        <p style={{ color: "#B3452F", fontSize: "13px" }}>{reminderError}</p>
       )}
     </>
   );
@@ -349,7 +338,7 @@ export function Flashcard({ deckId = null }) {
     markKnown,
   } = useFlashcardSession(deckId);
 
-  const { nextReview, notifyState, handleNotifyMe } = useReviewReminder({
+  const { nextReview, notifyState, reminderError, handleNotifyMe } = useReviewReminder({
     deckId,
     loading,
     total,
@@ -385,6 +374,7 @@ export function Flashcard({ deckId = null }) {
           sessionTotal={sessionTotal}
           nextReview={nextReview}
           notifyState={notifyState}
+          reminderError={reminderError}
           onNotifyMe={handleNotifyMe}
         />
       </div>
