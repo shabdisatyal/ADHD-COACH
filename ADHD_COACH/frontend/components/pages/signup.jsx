@@ -69,18 +69,6 @@ export const Signup = () => {
 
     setStatusMsg("Check your email for a verification link to finish setting up your account.");
   };
-
-  
-      const { data, error } = await supabase.auth.resetPasswordForEmail(form.email, {
-      redirectTo: `${window.location.origin}/reset-password`,
-    });
-
-    if (error) {
-      setErrorMsg(error.message);
-      return;
-    }
-
-    setStatusMsg("Password reset email sent — check your inbox.");
   };
 
   const inputClass =
