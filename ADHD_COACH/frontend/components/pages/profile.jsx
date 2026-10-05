@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { supabase } from "../../../supabaseclient";
 import { Progress } from "./progress";
+import { Stickers } from "../cutestickerprofile";
+import { getIcon } from "../avatar";
 
 function formatDate(iso) {
   if (!iso) return "";
@@ -11,11 +13,6 @@ function formatDate(iso) {
   });
 }
 
-function initialsFrom(name, email) {
-  const base = name || email || "?";
-  return base.trim().charAt(0).toUpperCase();
-}
-
 export function Profile() {
   const [user, setUser] = useState(null);
   const [newPassword, setNewPassword] = useState("");
@@ -24,6 +21,8 @@ export function Profile() {
   const [errorMsg, setErrorMsg] = useState("");
   const [saving, setSaving] = useState(false);
   const [editing, setEditing] = useState(false);
+  const [picking, setPicking] = useState(false);
+  const [selected, setSelected] = useState("duck");
 
   useEffect(() => {
     supabase.auth.getUser().then(({ data, error }) => {
@@ -37,17 +36,19 @@ export function Profile() {
   const name = user?.user_metadata?.first_name || "";
   const email = user?.email || "";
   const memberSince = formatDate(user?.created_at);
+  const savedAvatarId = user?.user_metadata?.avatar_id;
 
   const run = async (payload, successMsg, after) => {
     setErrorMsg("");
     setStatusMsg("");
     setSaving(true);
-    const { error } = await supabase.auth.updateUser(payload);
+    const { data, error } = await supabase.auth.updateUser(payload);
     setSaving(false);
     if (error) {
       setErrorMsg(error.message);
       return;
     }
+    if (data?.user) setUser(data.user);
     setStatusMsg(successMsg);
     after?.();
   };
@@ -62,6 +63,19 @@ export function Profile() {
     e.preventDefault();
     if (!newEmail) return setErrorMsg("Enter an email first.");
     run({ email: newEmail }, "Check your inbox to confirm the new email.");
+  };
+
+  const handleAvatarSave = () => {
+    run({ data: { avatar_id: selected } }, "Picture updated.", () =>
+      setPicking(false)
+    );
+  };
+
+  const togglePicker = () => {
+    setErrorMsg("");
+    setStatusMsg("");
+    setSelected(savedAvatarId || "duck");
+    setPicking((v) => !v);
   };
 
   const handleSignOut = async () => {
@@ -83,20 +97,30 @@ export function Profile() {
       <div className="mx-auto w-full max-w-6xl bg-white rounded-xl overflow-hidden">
         {/* header band */}
         <header className="bg-[#AEC4D4] px-8 sm:px-14 py-10 flex flex-col sm:flex-row sm:items-center gap-6">
-          <div className="w-24 h-24 rounded-full shrink-0 flex items-center justify-center text-3xl font-bold text-white overflow-hidden bg-gradient-to-br from-[#4C7A54] to-[#2F5233] shadow-lg">
-            {user?.user_metadata?.avatar_url ? (
-              <img src={user.user_metadata.avatar_url} alt="Profile" className="w-full h-full object-cover" />
-            ) : (
-              initialsFrom(name, email)
-            )}
-          </div>
+          <button
+            type="button"
+            onClick={togglePicker}
+            aria-label="Change profile picture"
+            className="group relative w-24 h-24 rounded-full shrink-0 overflow-hidden bg-[#FFF4E0] shadow-lg"
+          >
+            <img
+              src={getIcon(savedAvatarId).icon}
+              alt="Profile"
+              className="w-full h-full object-contain p-2"
+            />
+            <span className="absolute inset-0 flex items-center justify-center bg-black/50 text-white text-xs font-medium opacity-0 group-hover:opacity-100 transition-opacity">
+              Change pfp
+            </span>
+          </button>
 
           <div className="flex-1 min-w-0">
             <h1 className="text-4xl font-bold text-[#2B2118] leading-tight">
               {name || "Your account"}
             </h1>
             <p className="text-[#2F4858] text-sm mt-1 break-all">{email}</p>
-            {memberSince && <p className="text-[#4F6678] text-sm mt-0.5">Member since {memberSince}</p>}
+            {memberSince && (
+              <p className="text-[#4F6678] text-sm mt-0.5">Member since {memberSince}</p>
+            )}
           </div>
 
           <div className="flex gap-3">
@@ -112,6 +136,28 @@ export function Profile() {
             </button>
           </div>
         </header>
+
+        {/* sticker picker that opens from the circle */}
+        {picking && (
+          <div className="px-8 sm:px-14 py-8 border-b border-[#E6DDC6] bg-[#FCF1D0]/50">
+            <Stickers selected={selected} onSelect={setSelected} />
+            <div className="flex items-center gap-4 mt-4 max-w-md mx-auto">
+              <button
+                type="button"
+                onClick={handleAvatarSave}
+                disabled={saving}
+                className={submitClass}
+              >
+                {saving ? "Saving..." : "Saved!"}
+              </button>
+              {(errorMsg || statusMsg) && (
+                <p className={`text-sm ${errorMsg ? "text-red-600 font-medium" : "text-[#2B2118]"}`}>
+                  {errorMsg || statusMsg}
+                </p>
+              )}
+            </div>
+          </div>
+        )}
 
         {/* account settings, opens from Edit profile */}
         {editing && (
