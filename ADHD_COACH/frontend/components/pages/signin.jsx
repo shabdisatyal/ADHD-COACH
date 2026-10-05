@@ -182,10 +182,10 @@ export const Signin = () => {
             >
               forgot password?
             </button>
-            <a href="/signup" className="text-[var(--muted)]">
-              new here?{" "}
-              <span className="text-[var(--text)] font-semibold">create account</span>
-            </a>
+              <Link to="/signup" className="text-[var(--muted)]">
+                    new here?{" "}
+                    <span className="text-[var(--text)] font-semibold">create account</span>
+                  </Link>
           </div>
         </div>
       </div>

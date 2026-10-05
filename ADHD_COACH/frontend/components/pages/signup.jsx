@@ -212,10 +212,10 @@ export const Signup = () => {
 
             <div className="flex items-center justify-between mt-6 text-sm">
               
-              <a href="/signin" className="text-[var(--text)]/60">
-                have an account?{" "}
-                <span className="text-[var(--button)] font-semibold">log in</span>
-              </a>
+              <Link to="/signin" className="text-[var(--text)]/60">
+                  have an account?{" "}
+                  <span className="text-[var(--button)] font-semibold">log in</span>
+                </Link>
             </div>
           </div>
         </div>
