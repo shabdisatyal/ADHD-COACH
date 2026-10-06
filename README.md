@@ -2,12 +2,20 @@
 
 > **Beta version.** Caremel is still being built, and more updates are coming.
 
-## Starting when you feel overwhelmed
 <img width="1411" height="751" alt="Screenshot 2026-10-06 at 08 30 45" src="https://github.com/user-attachments/assets/8060e9f9-8488-4145-bd84-295d776ceaa1" />
 
+## Starting when you feel overwhelmed
+
+
+<p align="center"> 
+    <img width="1511" height="851" alt="Screenshot 2026-10-06 at 08 43 27" src="https://github.com/user-attachments/assets/c40a66bd-daa3-43fb-bf52-4cb0fcc36a36" />
+
+  
 We usually feel overwhelmed when we look at our deadlines and see what we actually have to do. That is why Caremel puts an "I can't start" button inside subject management itself, so you can begin without leaving the page.
 
-<img src="https://github.com/user-attachments/assets/1a8b4ce5-5436-4367-9b33-ebb2a1259015" alt="Subject management page with the I can't start button" width="100%" />
+
+  <img width="1511" height="851" alt="Screenshot 2026-10-06 at 08 47 44" src="https://github.com/user-attachments/assets/e075e752-47db-4333-9100-5de31a20c191" />
+</p>
 
 Each time you press it, you check in with how you feel and what is making it hard to start. Your answers are saved to your own account and used only for your analysis and reports.
 
@@ -28,3 +36,4 @@ When the reset ends, Caremel shows you the one thing that needs to be done and t
 
 Your flashcards become active at different times, depending on how much of the material you already know. Cards you know well come back later, and cards you are still learning come back sooner. Every review counts toward your progress too, including your cards mastered and the completion of each deck on your profile.
 
+(:3) 
