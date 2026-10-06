@@ -8,8 +8,9 @@
 
 
 <p align="center"> 
-    <img width="1511" height="851" alt="Screenshot 2026-10-06 at 08 43 27" src="https://github.com/user-attachments/assets/c40a66bd-daa3-43fb-bf52-4cb0fcc36a36" />
 
+
+<img width="1511" height="851" alt="Screenshot 2026-10-06 at 09 06 01" src="https://github.com/user-attachments/assets/39b0d76c-d09e-43c4-adcb-aabfa14d383b" />
   
 We usually feel overwhelmed when we look at our deadlines and see what we actually have to do. That is why Caremel puts an "I can't start" button inside subject management itself, so you can begin without leaving the page.
 
